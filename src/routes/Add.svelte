@@ -1,15 +1,18 @@
-<script>
+<script lang="ts">
   import { tasks } from "./store";
   // import { task } from "./store";
   let value='';
+  let array: any;
+  tasks.subscribe(prev => array= prev)
 
   /**
    * @param {any} item
    */
-  function handleAdd(item) {
-    if(value)
-      tasks.update(prev => [item, ...prev] )
-    console.log(item)
+  function handleAdd(item: any) {
+    if(value || !array.includes(item)){
+      tasks.update((prev) => [item, ...prev] )
+    }
+    console.log(array)
   }
 
   function handleReset() {
