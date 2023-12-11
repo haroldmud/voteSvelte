@@ -10,7 +10,7 @@
    */
   function handleAdd(item: any) {
     if(!array.includes(item) || value){
-      tasks.update((prev) => [{completed: false, task: item}, ...prev] )
+      tasks.update((prev) => [{completed: false, task: item, edit: false}, ...prev] )
     }
     // console.log(array)
   }

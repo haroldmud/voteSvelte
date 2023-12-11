@@ -2,7 +2,6 @@
   import Icon from "@iconify/svelte"
   import { tasks } from "./store";
   import type { Itodo } from "./store";
-  import { edit } from "./store";
   let todo: Itodo[] | any;
   tasks.subscribe(prev => todo = prev)
 
@@ -22,9 +21,16 @@
       console.log(id)
   }
 
-  function enableEdit() {
-    edit.update(prev => !prev)
+  function enableEdit(id: number) {
+    tasks.update(prev => prev.map((item, idx) => {
+      if(idx === id) {
+        item.edit = true
+      }
+      return item
+    }))
   }
+
+  // func
 
 </script>
 
@@ -40,13 +46,24 @@
               <Icon icon="cil:circle"/>
             {/if}
           </button>
-          <h2 class={`${tasks.completed ? 'line-through' : ''}`}>{tasks.task}</h2>
+          <div class="relative h-fit">
+            <h2 class={`${tasks.completed ? 'line-through' : ''}`}>{tasks.task}</h2>
+            {#if tasks.edit}
+              <input type="text" class="absolute top-0 border border-gray-200 outline-0 pl-2" value={tasks.task}>
+            {/if}
+          </div>
         </div>
         {#if tasks.completed}
           <div class="flex gap-1 my-auto">
-            <button>
-              <Icon icon="dashicons:edit"/>
-            </button>
+            {#if tasks.edit}
+              <button>
+                <Icon icon="mingcute:check-fill" />
+              </button>
+            {:else}
+              <button on:click={()=> enableEdit(i)}>
+                <Icon icon="dashicons:edit"/>
+              </button>
+            {/if}
             <button on:click={()=> handleDelete(i)}>
               <Icon icon="tabler:trash-x"/>
             </button>
