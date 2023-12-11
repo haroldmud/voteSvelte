@@ -9,16 +9,15 @@
    * @param {any} item
    */
   function handleAdd(item: any) {
-    if(value || !array.includes(item)){
-      tasks.update((prev) => [item, ...prev] )
+    if(!array.includes(item) || value){
+      tasks.update((prev) => [{completed: false, task: item}, ...prev] )
     }
-    console.log(array)
+    // console.log(array)
   }
 
   function handleReset() {
     value = ''
   }
-  
 </script>
 
 <section>
