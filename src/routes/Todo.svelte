@@ -3,6 +3,8 @@
   import { tasks } from "./store";
   import type { Itodo } from "./store";
   let todo: Itodo[] | any;
+  let editing: string;
+  let identifier: number | null;
   tasks.subscribe(prev => todo = prev)
 
   function handleLined(id: number) {
@@ -24,13 +26,24 @@
   function enableEdit(id: number) {
     tasks.update(prev => prev.map((item, idx) => {
       if(idx === id) {
-        item.edit = true
+        item.edit = true;
+        editing = item.task
+        identifier = id
       }
       return item
     }))
   }
 
-  // func
+  function handleEdit(id: number) {
+    tasks.update(prev => prev.map((item, idx)=> {
+      if(idx === id && item.edit) {
+        item.task = editing
+        item.edit = false
+        item.completed = false
+      }
+      return item
+    }))
+  }
 
 </script>
 
@@ -49,14 +62,14 @@
           <div class="relative h-fit">
             <h2 class={`${tasks.completed ? 'line-through' : ''}`}>{tasks.task}</h2>
             {#if tasks.edit}
-              <input type="text" class="absolute top-0 border border-gray-200 outline-0 pl-2" value={tasks.task}>
+              <input  type="text" class="absolute top-0 border border-gray-200 outline-0 pl-2" bind:value={editing}>
             {/if}
           </div>
         </div>
         {#if tasks.completed}
           <div class="flex gap-1 my-auto">
-            {#if tasks.edit}
-              <button>
+            {#if tasks.edit && identifier === i}
+              <button on:click={()=> handleEdit(i)}>
                 <Icon icon="mingcute:check-fill" />
               </button>
             {:else}

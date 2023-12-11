@@ -6,4 +6,4 @@ export type Itodo = {
   edit: boolean;
 }
 
-export const tasks = writable<Itodo[]>([{completed: true, task: 'whatever you want', edit: true}])
+export const tasks = writable<Itodo[]>([{completed: true, task: 'whatever you want', edit: false}])
