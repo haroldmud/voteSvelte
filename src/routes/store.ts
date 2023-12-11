@@ -6,7 +6,3 @@ export type Itodo = {
 }
 
 export const tasks = writable<Itodo[]>([{completed: true, task: 'whatever you want'}])
-
-export const lined = writable<boolean>(false)
-
-

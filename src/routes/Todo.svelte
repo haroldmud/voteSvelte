@@ -1,11 +1,8 @@
 <script lang="ts">
   import Icon from "@iconify/svelte"
   import { tasks } from "./store";
-  import { lined } from "./store";
   import type { Itodo } from "./store";
   let todo: Itodo[] | any;
-  let line: boolean;
-  lined.subscribe(prev => line = prev)
   tasks.subscribe(prev => todo = prev)
 
   function handleLined(id: number) {
@@ -17,12 +14,13 @@
     }))
   }
 
-  
   function handleDelete(id: number) {
-    tasks.update(todo.filter((_item: any, idx: any) => {
-      idx !== id 
-    }))
+    tasks.update(prev => prev.filter((_item, idx) => 
+        id !== idx
+      ))
+      console.log(id)
   }
+
 </script>
 
   {#if todo}
@@ -41,10 +39,10 @@
         </div>
         {#if tasks.completed}
           <div class="flex gap-1 my-auto">
-            <button on:click={()=> handleDelete(i)}>
+            <button>
               <Icon icon="dashicons:edit"/>
             </button>
-            <button>
+            <button on:click={()=> handleDelete(i)}>
               <Icon icon="tabler:trash-x"/>
             </button>
           </div>
