@@ -2,6 +2,7 @@
   import Icon from "@iconify/svelte"
   import { tasks } from "./store";
   import type { Itodo } from "./store";
+  import { edit } from "./store";
   let todo: Itodo[] | any;
   tasks.subscribe(prev => todo = prev)
 
@@ -19,6 +20,10 @@
         id !== idx
       ))
       console.log(id)
+  }
+
+  function enableEdit() {
+    edit.update(prev => !prev)
   }
 
 </script>
