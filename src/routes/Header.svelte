@@ -1,11 +1,6 @@
 <script>
   import { page } from "$app/stores";
-  import { setContext } from "svelte";
-  export let message = 'hello world';
-  let routeId;
-  routeId = $page.route.id
-  setContext('thisKey', message)
-
+  $: routeId  = $page.route.id
 </script>
 
 <header>
@@ -15,10 +10,14 @@
     </a>
   </div>
  <nav class="bg-blue-300 flex justify-center gap-4">
-   <a class="font-bold" href="/">Vote</a>
-    <a class="font-bold" href="/todo">Tasks</a>
+   <a class="font-bold" class:active={routeId === '/'} href="/">Vote</a>
+    <a class="font-bold" class:active={routeId === '/todo'} href="/todo">Tasks</a>
   </nav>
 </header>
 
 <style lang="postcss">
+  nav a.active {
+    color: #2563eb;
+    font-weight: bold;
+  }
 </style>
