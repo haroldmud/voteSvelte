@@ -1,6 +1,6 @@
 <script>
   import { page } from "$app/stores";
-  $: routeId  = $page.route.id
+  $:  routeId  = $page.route.id
 </script>
 
 <header>

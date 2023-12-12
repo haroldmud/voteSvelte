@@ -1,6 +1,5 @@
 <script lang="ts">
-  import { tasks } from "./store";
-  // import { task } from "./store";
+  import { tasks } from "./todo/store";
   let value='';
   let array: any;
   tasks.subscribe(prev => array= prev)
@@ -12,7 +11,6 @@
     if(!array.includes(item) || value){
       tasks.update((prev) => [{completed: false, task: item, edit: false}, ...prev] )
     }
-    // console.log(array)
   }
 
   function handleReset() {

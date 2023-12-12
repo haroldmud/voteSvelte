@@ -1,14 +1,9 @@
 <script>
-// @ts-nocheck
-
- import Todo from "./Todo.svelte";
- import Add from "./Add.svelte";
- let todo;
-//  tasks.subscribe(prev => todo = prev)
+  import Header from "./vote/Header.svelte";
 </script>
 
 <section>
- dfasdfadf
+ <Header />
 </section>
 
 <style lang="postcss">

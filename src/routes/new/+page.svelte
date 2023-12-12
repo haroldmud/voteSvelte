@@ -3,6 +3,12 @@
 	<meta name="description" content="About this app" />
 </svelte:head>
 
+<script>
+	import Header from "../vote/Header.svelte";
+
+</script>
+
+<Header create="/new"/>
 <div class="text-column">
 	<h1>About this app</h1>
 
