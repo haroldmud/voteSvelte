@@ -8,8 +8,7 @@
 </script>
 
 <section>
-  <Add />
-  <Todo />
+ dfasdfadf
 </section>
 
 <style lang="postcss">
