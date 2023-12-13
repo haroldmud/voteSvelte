@@ -5,7 +5,7 @@
 </script>
 
 <header>
-  <nav class=" flex justify-center gap-4 mt-5 gap-8">
+  <nav class=" flex justify-center gap-4 mt-5">
     <a class="font-thin text-3xl hover:no-underline" class:active={routeId === '/'} href="/">Current</a>
     <a class="font-thin text-3xl hover:no-underline" class:active={routeId === create} href="/new">Add choice</a>
   </nav>
