@@ -23,4 +23,32 @@ export const Votes = writable<IVote[]>([
     leftVotes: 0,
     rightVotes: 0
   },
+  {
+    id: Number(new Date()),
+    choiceOne: 'Xbox',
+    choiceTwo: 'PS',
+    leftVotes: 0,
+    rightVotes: 0
+  },
+  {
+    id: Number(new Date()),
+    choiceOne: 'Xbox',
+    choiceTwo: 'PS',
+    leftVotes: 0,
+    rightVotes: 0
+  },
+  {
+    id: Number(new Date()),
+    choiceOne: 'Xbox',
+    choiceTwo: 'PS',
+    leftVotes: 0,
+    rightVotes: 0
+  },
+  {
+    id: Number(new Date()),
+    choiceOne: 'Xbox',
+    choiceTwo: 'PS',
+    leftVotes: 0,
+    rightVotes: 0
+  },
 ])
