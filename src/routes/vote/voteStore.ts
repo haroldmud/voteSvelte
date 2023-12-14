@@ -4,8 +4,8 @@ export type IVote = {
   id: number;
   choiceOne: string;
   choiceTwo: string;
-  votesOne: number;
-  votesTwo: number;
+  leftVotes: number;
+  rightVotes: number;
 }
 
 export const Votes = writable<IVote[]>([
@@ -13,14 +13,14 @@ export const Votes = writable<IVote[]>([
     id: Number(new Date()),
     choiceOne: 'JavaScript',
     choiceTwo: 'Python',
-    votesOne: 0,
-    votesTwo: 0
+    leftVotes: 4,
+    rightVotes: 7
   },
   {
     id: Number(new Date()),
     choiceOne: 'Xbox',
     choiceTwo: 'PS',
-    votesOne: 0,
-    votesTwo: 0
+    leftVotes: 0,
+    rightVotes: 0
   },
 ])

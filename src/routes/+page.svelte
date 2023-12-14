@@ -5,7 +5,6 @@
    const deux = 6;
    const sum = un + deux;
    const tot = un * 100/sum
-   console.log(tot)
 </script>
 
 <section>
@@ -42,6 +41,7 @@
         <button class="bg-red-800 rounded-sm w-fit px-3 text-white font-bold py-1 mx-auto">Delete</button>
       </div>
     </div>
+    
   </section>
 </section>
 
