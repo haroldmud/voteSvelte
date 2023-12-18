@@ -7,11 +7,11 @@
   // const  message = getContext('thisKey')
 </script>
 
-<div class="flex flex-col justify-between border h-[100vh] min-w-[100vh]">
+<div class="flex flex-col justify-between h-[100vh] min-w-[100vh]">
   <div>
     <Header />
   
-    <main class="flex flex-1 flex-col p-[1rem] w-full max-w-[64rem] mx-auto borde-box">
+    <main class="flex  flex-1 flex-col p-[1rem] w-full max-w-[64rem] mx-auto borde-box">
       <slot />
     </main>
   </div>
