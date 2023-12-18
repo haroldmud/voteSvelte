@@ -1,7 +1,7 @@
 <script lang="ts">
   import Icon from "@iconify/svelte"
-  import { tasks } from "./store";
-  import type { Itodo } from "./store";
+  import { tasks } from "./todo/store";
+  import type { Itodo } from "./todo/store";
   let todo: Itodo[] | any;
   let editing: string;
   let identifier: number | null;
