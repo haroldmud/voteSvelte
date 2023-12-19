@@ -1,9 +1,9 @@
 <script>
   // @ts-nocheck
   
-   import Todo from "../Todo.svelte";
-   import Add from "../Add.svelte";
-   let todo;
+   import Todo from "./Todo.svelte";
+   import Add from "./Add.svelte";
+  //  let todo;
   //  tasks.subscribe(prev => todo = prev)
   </script>
   
