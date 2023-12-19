@@ -6,7 +6,7 @@
 <header>
   <div class="bg-blue-200 py-10 opacity-20">
     <a href="/">
-      <h1 class="font-bold text-5xl opacity-30= text-pink-100">PREFERENCES</h1>
+      <h1 class="font-bold text-5xl text-blue-900">PREFERENCES</h1>
     </a>
   </div>
  <nav class="bg-blue-900 flex justify-center gap-4 text-white">

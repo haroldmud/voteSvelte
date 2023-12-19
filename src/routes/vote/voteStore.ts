@@ -6,6 +6,7 @@ export type IVote = {
   choiceTwo: string;
   leftVotes: number;
   rightVotes: number;
+  readyToVote: boolean
 }
 
 export const Votes = writable<IVote[]>([
@@ -14,41 +15,47 @@ export const Votes = writable<IVote[]>([
     choiceOne: 'JavaScript',
     choiceTwo: 'Python',
     leftVotes: 4,
-    rightVotes: 7
+    rightVotes: 7,
+    readyToVote: false
   },
   {
     id: Number(new Date()),
     choiceOne: 'Xbox',
     choiceTwo: 'PS',
     leftVotes: 0,
-    rightVotes: 0
+    rightVotes: 0,
+    readyToVote: false
   },
   {
     id: Number(new Date()),
     choiceOne: 'Xbox',
     choiceTwo: 'PS',
     leftVotes: 0,
-    rightVotes: 0
+    rightVotes: 0,
+    readyToVote: false
   },
   {
     id: Number(new Date()),
     choiceOne: 'Xbox',
     choiceTwo: 'PS',
     leftVotes: 0,
-    rightVotes: 0
+    rightVotes: 0,
+    readyToVote: false
   },
   {
     id: Number(new Date()),
     choiceOne: 'Xbox',
     choiceTwo: 'PS',
     leftVotes: 0,
-    rightVotes: 0
+    rightVotes: 0,
+    readyToVote: false
   },
   {
     id: Number(new Date()),
     choiceOne: 'Xbox',
     choiceTwo: 'PS',
     leftVotes: 0,
-    rightVotes: 0
+    rightVotes: 0,
+    readyToVote: false
   },
 ])

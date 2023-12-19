@@ -9,7 +9,8 @@ test("Add todos", async()=>{
   const addButton = getByText("I'm not here for games");
 
   await fireEvent.input(input, { target: { value: "I'm not here for games" } });
-  await fireEvent.addButton();
+  await fireEvent.click(addButton);
 
   expect(getByText("I'm not here for games")).toBeInDocument();
+  expect(addButton.innerHTML).toHaveProperty('disabled', 'false')
 })
