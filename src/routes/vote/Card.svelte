@@ -35,6 +35,13 @@
       return item
     })
   }
+
+  function handleOff() {
+    popoff = true
+    if(popoff) {
+      setTimeout(()=> popoff = false, 1000)
+    }
+  }
 </script>
 
 <section class="mt-12 grid grid-flow-row grid-cols-2 gap-4">
@@ -55,11 +62,11 @@
       <div class="flex mt-6">
         <button on:click={()=> { shuffle(); handlePopup(votes.indexOf(choice)) }} class="bg-red-800 rounded-sm w-fit px-3 text-white font-bold py-1 mx-auto">VOTE NOW</button>
       </div>
-      {#if choice.readyToVote && !popoff }   
+      {#if choice.readyToVote === true }   
         <div class="grid gap-4 z-50 m-auto bg-[#000000ea] h-full w-full top-0 left-0 fixed">
           <div class=" pb-4 bg-blue-300 rounded-lg w-[40%] h-fit m-auto shadow-slate-600 shadow-lg">
             <div class="flex justify-end pr-1 pt-1">
-              <button on:click={()=> {handlePopoff(choice.id); popoff = true}} class="border-red-400 border">
+              <button on:click={()=> {handlePopoff(choice.id); console.log('first')}} class="border-green-400 border">
                 <Icon icon="basil:cancel-outline" class="hover:text-red-900" />
               </button>
             </div>

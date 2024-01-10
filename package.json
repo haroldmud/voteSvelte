@@ -7,7 +7,7 @@
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"test": "npx jest src",
+		"test": "vitest",
 		"test:watch": "npm run test -- --watch"
 	},
 	"devDependencies": {
@@ -17,7 +17,7 @@
 		"@iconify/svelte": "^3.1.4",
 		"@neoconfetti/svelte": "^1.0.0",
 		"@sveltejs/adapter-auto": "^2.0.0",
-		"@sveltejs/kit": "^1.27.4",
+		"@sveltejs/kit": "^1.30.3",
 		"@testing-library/jest-dom": "^6.1.5",
 		"@testing-library/svelte": "^4.0.5",
 		"@testing-library/user-event": "^14.5.1",
@@ -35,7 +35,8 @@
 		"tailwindcss": "^3.3.5",
 		"tslib": "^2.4.1",
 		"typescript": "^5.0.0",
-		"vite": "^4.4.2"
+		"vite": "^4.4.2",
+		"vitest": "^1.1.0"
 	},
 	"type": "module",
 	"dependencies": {
@@ -50,18 +51,21 @@
 			"^.+\\.svelte$": "svelte-jester",
 			".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub"
 		},
-		"moduleFileExtensions": ["svelte", "js","ts"],
-    "collectCoverageFrom": [
+		"moduleFileExtensions": [
+			"svelte",
+			"js",
+			"ts"
+		],
+		"collectCoverageFrom": [
 			"src/**/*.{ts,svelte}"
-    ],
-		
-    "coverageThreshold": {
-        "global": {
-            "statements": 100,
-            "branches": 100,
-            "functions": 100,
-            "lines": 100
-        }
-    }
-  }
+		],
+		"coverageThreshold": {
+			"global": {
+				"statements": 100,
+				"branches": 100,
+				"functions": 100,
+				"lines": 100
+			}
+		}
+	}
 }
