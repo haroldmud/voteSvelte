@@ -10,8 +10,9 @@
     </a>
   </div>
  <nav class="bg-blue-900 flex justify-center gap-4 text-white">
-   <a class="font-bold" class:active={routeId === '/'} href="/">Vote</a>
+    <a class="font-bold" class:active={routeId === '/'} href="/">Vote</a>
     <a class="font-bold" class:active={routeId === '/todo'} href="/todo">Tasks</a>
+    <a href="/placeholder" class:active={routeId === '/placeholder'}>Posts</a>
   </nav>
 </header>
 

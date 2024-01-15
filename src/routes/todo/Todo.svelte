@@ -49,6 +49,7 @@
 
   {#if todo}
     <section class="border w-[32rem] mx-auto">
+      
       {#each todo as tasks, i (i)}
       <div class="flex border bg-blue-100 p-2 justify-between">
         <div class="h-fit my-auto flex gap-2">

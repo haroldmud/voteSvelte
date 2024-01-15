@@ -4,7 +4,6 @@
   import type { IVote } from "./voteStore";
   import Icon from "@iconify/svelte";
   let votes: IVote[];
-  let popoff = false;
   Votes.subscribe(prev => votes = prev)
   function shuffle() {
     votes = votes.sort(()=> .5 - Math.random())
@@ -19,7 +18,7 @@
   }
 
   function handlePopup(idx: number) {
-    votes.map((item, id)=> {
+    votes = votes.map((item, id)=> {
       if(idx === id) {
         item.readyToVote = true
       }
@@ -28,19 +27,12 @@
   }
 
   function handlePopoff(idx: number) {
-    votes.map((item, id)=> {
+    votes = votes.map((item, id)=> {
       if(idx === id) {
         item.readyToVote = false
       }
       return item
     })
-  }
-
-  function handleOff() {
-    popoff = true
-    if(popoff) {
-      setTimeout(()=> popoff = false, 1000)
-    }
   }
 </script>
 
@@ -48,25 +40,25 @@
   {#each votes as choice (choice)}
     <div animate:flip class="border shadow rounded-sm w-full p-6 ">
       <h2 class="font-bold text-xl">{choice.choiceOne} or {choice.choiceTwo}</h2>
-      <h3 class=" text-blue-400 p-1 font-bold text-sm mt-2">Total votes: {sum(choice.leftVotes, choice.rightVotes)}</h3>
+      <h3 class=" text-blue-400 p-1 font-bold text-sm mt-2">Total votes: {sum(choice.votesOne, choice.votesTwo)}</h3>
       <div class="mt-6 grid gap-6">
         <div class="relative border-l-4 border-red-500 p-2 bg-[#fad8d858]">
-          <div style="width: {tot(choice.leftVotes, choice.rightVotes)}%" class="percent h-full bg-[#e9525285] absolute top-0 left-0"></div>
-          <h2 class="font-bold text-blue-900">{choice.choiceOne} <span class="text-gray-500 text-sm">({choice.leftVotes} votes)</span></h2>
+          <div style="width: {tot(choice.votesOne, choice.votesTwo)}%" class="percent h-full bg-[#e9525285] absolute top-0 left-0"></div>
+          <h2 class="font-bold text-blue-900">{choice.choiceOne} <span class="text-gray-500 text-sm">({choice.votesOne} votes)</span></h2>
         </div>
         <div class="relative border-l-4 border-teal-500 p-2 bg-[#baf0d927]">
-          <div style="width: {tot(choice.rightVotes, choice.leftVotes)}%" class="percent h-full bg-[#52e98c85] absolute top-0 left-0"></div>
-          <h2 class="font-bold text-blue-900">{choice.choiceTwo} <span class="text-gray-500 text-sm">({choice.rightVotes} votes)</span></h2>
+          <div style="width: {tot(choice.votesTwo, choice.votesOne)}%" class="percent h-full bg-[#52e98c85] absolute top-0 left-0"></div>
+          <h2 class="font-bold text-blue-900">{choice.choiceTwo} <span class="text-gray-500 text-sm">({choice.votesTwo} votes)</span></h2>
         </div>
       </div>
       <div class="flex mt-6">
         <button on:click={()=> { shuffle(); handlePopup(votes.indexOf(choice)) }} class="bg-red-800 rounded-sm w-fit px-3 text-white font-bold py-1 mx-auto">VOTE NOW</button>
       </div>
-      {#if choice.readyToVote === true }   
-        <div class="grid gap-4 z-50 m-auto bg-[#000000ea] h-full w-full top-0 left-0 fixed">
+      {#if choice.readyToVote}   
+        <div class="bg-[#000000ab] grid gap-4 z-50 m-auto  h-full w-full top-0 left-0 fixed">
           <div class=" pb-4 bg-blue-300 rounded-lg w-[40%] h-fit m-auto shadow-slate-600 shadow-lg">
             <div class="flex justify-end pr-1 pt-1">
-              <button on:click={()=> {handlePopoff(choice.id); console.log('first')}} class="border-green-400 border">
+              <button on:click={()=> {handlePopoff(votes.indexOf(choice))}}>
                 <Icon icon="basil:cancel-outline" class="hover:text-red-900" />
               </button>
             </div>
