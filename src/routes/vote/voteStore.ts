@@ -1,3 +1,4 @@
+import type { User, Session, WeakPassword } from "@supabase/supabase-js";
 import { writable } from "svelte/store";
 
 export type IVote = {
@@ -9,55 +10,12 @@ export type IVote = {
   readyToVote: boolean
 }
 
-export const Votes = writable<IVote[]>([
-  {
-    id: Number(new Date()),
-    choiceOne: 'JavaScript',
-    choiceTwo: 'Python',
-    votesOne: 4,
-    votesTwo: 7,
-    readyToVote: false
-  },
-  {
-    id: Number(new Date()),
-    choiceOne: 'Xbox',
-    choiceTwo: 'PS',
-    votesOne: 0,
-    votesTwo: 0,
-    readyToVote: false
-  },
-  {
-    id: Number(new Date()),
-    choiceOne: 'Xbox',
-    choiceTwo: 'PS',
-    votesOne: 0,
-    votesTwo: 0,
-    readyToVote: false
-  },
-  {
-    id: Number(new Date()),
-    choiceOne: 'Asake',
-    choiceTwo: 'Burna',
-    votesOne: 0,
-    votesTwo: 0,
-    readyToVote: false
-  },
-  {
-    id: Number(new Date()),
-    choiceOne: 'Xbox',
-    choiceTwo: 'PS',
-    votesOne: 0,
-    votesTwo: 0,
-    readyToVote: false
-  },
-  {
-    id: Number(new Date()),
-    choiceOne: 'Xbox',
-    choiceTwo: 'PS',
-    votesOne: 0,
-    votesTwo: 0,
-    readyToVote: false
-  },
-])
+export const Votes = writable<IVote[]>([])
 
 export const error = writable<any>(null);
+
+export const thatUser = writable<
+  { user: User; session: Session; weakPassword?: WeakPassword | undefined; } | 
+  { user: null; session: null; weakPassword?: null | undefined; } | 
+  { user: User | null; session: Session | null; } | { user: null; session: null; } | any
+  >(undefined)

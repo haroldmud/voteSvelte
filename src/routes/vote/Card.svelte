@@ -1,12 +1,63 @@
 <script lang="ts">
   import { flip } from "svelte/animate";
   import { Votes } from "./voteStore";
-  import type { IVote } from "./voteStore";
+  // import type { IVote } from "./voteStore";
   import Icon from "@iconify/svelte";
-  let votes: IVote[];
+  import { onMount } from "svelte";
+  import { supabase } from "$lib/db";
+  import { thatUser } from "./voteStore";
+  
+  let votes: any;
+  
+  onMount(async()=>{  
+    const { data }= await supabase.from('votes').select('*');
+    votes = data
+      console.table(votes)
+      return data ?? []
+  });
+
+  const updateVoteChoiceOne = async (choice: any) => {
+    try{
+      const { data, error } = await supabase
+    .from('votes')
+    .update({ votesOne: choice.votesOne++ })
+    .eq('id', choice.id)
+    .select()
+    }catch(err){
+      console.log(err)
+    }
+  }
+
+  const updateVoteChoiceTwo = async (choice: any) => {
+    try{
+      const { data, error } = await supabase
+    .from('votes')
+    .update({ votesOne: choice.votesTwo++ })
+    .eq('id', choice.id)
+    .select()
+    }catch(err){
+      console.error(err)
+    }
+  }
+
+  const deleteVote = async (choice: any) => {
+    try{
+      const { error } = await supabase
+      .from('votes')
+      .delete()
+      .eq('id', choice.id)
+    }catch(err) {
+      console.error(err)
+    }
+  }
+
+  const deleteVoteCard = (id:any) => {
+    votes = votes.filter((item: any) => id !== item.id)
+  }
+  
   Votes.subscribe(prev => votes = prev)
   function shuffle() {
-    votes = votes.sort(()=> .5 - Math.random())
+    votes = votes?.sort(()=> .5 - Math.random())
   }
   function sum(un: number, deux: number): number {
     return un + deux
@@ -18,7 +69,7 @@
   }
 
   function handlePopup(idx: number) {
-    votes = votes.map((item, id)=> {
+    votes = votes.map((item: any, id: any)=> {
       if(idx === id) {
         item.readyToVote = true
       }
@@ -27,7 +78,7 @@
   }
 
   function handlePopoff(idx: number) {
-    votes = votes.map((item, id)=> {
+    votes = votes.map((item: any, id: any)=> {
       if(idx === id) {
         item.readyToVote = false
       }
@@ -35,7 +86,9 @@
     })
   }
 </script>
-
+{#if $thatUser.email}
+  <h1>Welcome to our app {$thatUser}</h1>
+{/if}
 <section class="mt-12 grid grid-flow-row grid-cols-2 gap-4">
   {#each votes as choice (choice)}
     <div animate:flip class="border shadow rounded-sm w-full p-6 ">
@@ -64,8 +117,11 @@
             </div>
             <p class="px-4 font-bold text-center">click on your choice</p>
             <div class="px-4 flex justify-center gap-4 mt-4">
-              <button class="bg-red-800 hover:bg-red-900 text-white hover:text-blue-200 rounded px-2 py-1 text-xs font-bold">{choice.choiceOne}</button>
-              <button class="bg-teal-400 hover:bg-teal-500 text-white hover:text-blue-200 rounded px-2 py-1 text-xs font-bold">{choice.choiceTwo}</button>
+              <button on:click={()=> updateVoteChoiceOne(choice)} class="bg-red-800 hover:bg-red-900 text-white hover:text-blue-200 rounded px-2 py-1 text-xs font-bold">{choice.choiceOne}</button>
+              <button on:click={()=> updateVoteChoiceTwo(choice)} class="bg-teal-400 hover:bg-teal-500 text-white hover:text-blue-200 rounded px-2 py-1 text-xs font-bold">{choice.choiceTwo}</button>
+            </div>
+            <div class="w-full flex justify-center mt-4">
+              <button on:click={()=> {deleteVote(choice);deleteVoteCard(choice.id)}} class="bg-red-400 text-gray-100 font-bold px-2 rounded-lg">delete card</button>
             </div>
           </div>
         </div>
