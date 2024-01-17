@@ -5,7 +5,6 @@
   import Icon from "@iconify/svelte";
   import { onMount } from "svelte";
   import { supabase } from "$lib/db";
-  import { thatUser } from "./voteStore";
   
   let votes: any;
   
@@ -86,9 +85,6 @@
     })
   }
 </script>
-{#if $thatUser.email}
-  <h1>Welcome to our app {$thatUser}</h1>
-{/if}
 <section class="mt-12 grid grid-flow-row grid-cols-2 gap-4">
   {#each votes as choice (choice)}
     <div animate:flip class="border shadow rounded-sm w-full p-6 ">
