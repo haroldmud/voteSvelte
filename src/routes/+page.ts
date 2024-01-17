@@ -8,4 +8,3 @@
 //   throw error(404, { message: 'this is prolly another 404 error' })
 // }
 export const prerender = true;
- 
