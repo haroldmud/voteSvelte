@@ -3,11 +3,11 @@
   import { thatUser } from "../../vote/voteStore";
   let email = ""
   let password = ""
-  const signUp = async(event: { preventDefault: () => void; })=> {
-    event?.preventDefault();
+  const signUp = async()=> {
     let { data: userData, error } = await supabase.auth.signUp({
       email: email,
       password: password
+      // 'pxBnrscNDzZfUALpqGlG'
     })
 
     console.log(userData)
@@ -32,7 +32,7 @@
             <input bind:value={password} type="password" placeholder="**** *****" id="password" name="password" class="mt-1 p-2 w-full border rounded-md">
         </div>
 
-        <button on:click={signUp} type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Register</button>
+        <button on:click|preventDefault={signUp} type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">Register</button>
         <div class="mt-4">
           <p>Already a member? <span><a class="text-green-400 hover:underline" href="/login">login now</a></span></p>
         </div>

@@ -1,15 +1,24 @@
 <script lang="ts">
   import { supabase } from "$lib/db";
   import { thatUser } from "../vote/voteStore";
-
+  let loading = false;
   let email = ""
   let password = ""
   const logIn = async ()=> {
-    let { data: userData, error } = await supabase.auth.signInWithPassword({
-      email: email,
-      password: password
-    })
-    $thatUser = userData
+    try{
+      loading = true;
+      let { data: userData, error } = await supabase.auth.signInWithPassword({
+        email: email,
+        password: password
+      })
+      if(error) throw error;
+      alert('check your email for the login link')
+    }catch(err){
+      console.error(err)
+    }finally{
+      loading = false
+    }
+    // $thatUser = userData
   }
 </script>
 
