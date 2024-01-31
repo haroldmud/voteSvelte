@@ -30,6 +30,7 @@
 </script>
 
 <section>
+  <h1 class="hold">PLACEHOLDER</h1>
   {#if load}
   <div class="p-12">
     <span class="animate-ping inline-flex h-5 w-20 opacity-15">loading...</span>
@@ -39,7 +40,7 @@
   {:else}
   <div class="flex flex-col">
     {#each posts as articles}
-      <a href="/placeholder/{articles.id}" class="border w-6/12 my-2 bg-slate-300 p-1 rounded-lg hover:no-underline">{articles.title}</a>
+      <a  data-testid="post-link" href="/placeholder/{articles.id}" class="border w-6/12 my-2 bg-slate-300 p-1 rounded-lg hover:no-underline">{articles.title}</a>
     {/each}
   </div>
   {/if}
